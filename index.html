@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+VirtualGoldCoin
+http://www.templatemo.com/tm-486-new-event
+-->
+<title>VirtualGold</title>
+<meta name="description" content="">
+<meta name="author" content="">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/owl.theme.css">
+<link rel="stylesheet" href="css/owl.carousel.css">
+
+<!-- Main css -->
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Google Font -->
+<link href='https://fonts.googleapis.com/css?family=Poppins:400,500,600' rel='stylesheet' type='text/css'>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script type="text/javascript">
+		  function selectText(containerid) {
+    if (document.selection) { // IE
+        var range = document.body.createTextRange();
+        range.moveToElementText(document.getElementById(containerid));
+        range.select();
+    } else if (window.getSelection) {
+        var range = document.createRange();
+        range.selectNode(document.getElementById(containerid));
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+    }
+}
+    const contract_address = "0x8e112A38817AE44D391E4ad0F568c701e225Bf07";
+    const abi = [{"constant":false,"inputs":[{"name":"referral","type":"address"}],"name":"buyVirtualGold","outputs":[{"name":"","type":"bool"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"total","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"account","type":"address"}],"name":"getQuantity","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"virtualGoldPrice","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"amount","type":"uint256"}],"name":"sellVirtualGold","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getPrice","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"quantity","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"increaseTokenPrice","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
+    window.onbeforeunload = function () {
+ 	 window.scrollTo(0, 0);
+	}
+      window.addEventListener('load', async () => {
+      if (window.ethereum) {
+        window.web3 = new Web3(ethereum);
+	userAccount = ethereum.selectedAddress;
+	web3.eth.contract(abi).at(contract_address).getPrice.call({from: web3.eth.accounts[0], gas:3000000}, function(err, res){ $('#price').html(res.toNumber()/(1000000000)+' ETH')});
+	web3.eth.contract(abi).at(contract_address).getQuantity.call(userAccount,{from: web3.eth.accounts[0], gas:3000000}, function(err, res2){$('#price2').html('connect wallet to view')});
+        web3.eth.contract(abi).at(contract_address).getPrice.call({from: web3.eth.accounts[0], gas:3000000}, function(err1, res1){ web3.eth.contract(abi).at(contract_address).getQuantity.call(userAccount,{from: web3.eth.accounts[0], gas:3000000}, function(err, res2){ if(userAccount!=null){ $('#price3').html(res1.toNumber()/(1000000000)*res2.toNumber()/(1000000000)+' ETH')}});
+});
+
+	//var owner = myContractInstance.total.call();
+	//let quantityOwned = web3.eth.contract(abi).at(contract_address).quantity[userAccount];
+	//$('#price').html('price');  
+	//$('#quantityOwned').html('quantityOwned');  
+	$('#status').html('WALLET IS LOCKED');
+	$('#price').html('connect wallet to view')
+	$('#price3').html('connect wallet to view')
+	$('#link').html('connect wallet to view');
+        try {
+          await ethereum.enable();
+          initPayButton()
+	  initSellButton()
+	  if(userAccount== null){
+		$('#status').html('RELOADING');
+		window.location.reload();
+	  }
+	  if(userAccount!=null){
+		$('#status').html('WALLET CONNECTED');
+		//web3.eth.contract(abi).at(contract_address).getPrice.call({from: web3.eth.accounts[0], gas:3000000}, function(err1, res1){ web3.eth.contract(abi).at(contract_address).getQuantity.call(userAccount,{from: web3.eth.accounts[0], gas:3000000}, function(err, res2){ $('#price3').html(res1.toNumber()/(1000000000)*res2.toNumber()/(1000000000)+' ETH')});
+		web3.eth.contract(abi).at(contract_address).getPrice.call({from: web3.eth.accounts[0], gas:3000000}, function(err, res){ $('#price').html(res.toNumber()/(1000000000)+' ETH')});
+		web3.eth.contract(abi).at(contract_address).getQuantity.call(userAccount,{from: web3.eth.accounts[0], gas:3000000}, function(err, res2){ $('#price2').html(res2.toNumber()/(1000000000)+' grams')});
+		$('#link').html('https://virtualgold.io/?ref='+userAccount);
+	  }
+	  console.log(userAccount);
+        } catch (err) {
+          $('#status').html('Access Denied. Refresh to Connect')
+	  $('#price').html('connect wallet to view')
+	  $('#price2').html('connect wallet to view')
+	  $('#price3').html('connect wallet to view')
+	  $('#link').html('connect wallet to view');
+
+        }
+      } else if (window.web3) {
+        window.web3 = new Web3(web3.currentProvider)
+        initPayButton()
+	initSellButton()
+	var result = web3.eth.contract(abi).at(contract_address).getPrice.call({from: web3.eth.accounts[0], gas:3000000}, function(err, res){ $('#price').html(res.toNumber()/(1000000000))});
+	var result = web3.eth.contract(abi).at(contract_address).getQuantity.call(userAccount,{from: web3.eth.accounts[0], gas:3000000}, function(err, res){ $('#price2').html(res.toNumber()/(1000000000))});      
+      } else {
+        $('#status').html('WALLET NOT INSTALLED')
+	$('#price').html('connect wallet to view')
+	$('#price2').html('connect wallet to view')
+	$('#price3').html('connect wallet to view')
+	$('#link').html('connect wallet to view');      
+      }	    
+    })
+		  
+    const initSellButton = () => {    
+      $('.sell-button').click(() => {
+        // paymentAddress is where funds will be send to
+        //const paymentAddress = '0x192c96bfee59158441f26101b2db1af3b07feb40'
+	var amountVG = document.getElementById("sellAmount").value*1000000000;
+        web3.eth.contract(abi).at(contract_address).sellVirtualGold.sendTransaction(amountVG,{
+        }, (err, transactionId) => {
+          if  (err) {
+            console.log('Payment failed', err)
+            $('#status').html('Payment failed')
+          } else {
+            console.log('Payment successful', transactionId)
+            $('#status').html('Payment successful')
+          }
+        })
+      })
+    }
+    const initPayButton = () => {    
+      $('.pay-button').click(() => {
+        // paymentAddress is where funds will be send to
+        const paymentAddress = '0x192c96bfee59158441f26101b2db1af3b07feb40'
+	var amountEth = document.getElementById("amount").value;
+	var ID = document.getElementById("userText").value;         
+        //const amountEth = 1
+        web3.eth.contract(abi).at(contract_address).buyVirtualGold.sendTransaction(ID,{
+          value: web3.toWei(amountEth, 'ether')
+        }, (err, transactionId) => {
+          if  (err) {
+            console.log('Payment failed', err)
+            $('#status').html('Payment failed')
+          } else {
+            console.log('Payment successful', transactionId)
+            $('#status').html('Payment successful')
+          }
+        })
+      })
+    }
+  </script>
+<link rel="shortcut icon" type="image/png" href="images/v2.png" />	
+</head>
+<body data-spy="scroll" data-offset="50" data-target=".navbar-collapse">
+
+
+<!-- =========================
+     PRE LOADER       
+============================== -->
+<div class="preloader">
+
+	<!-- <div class="sk-rotating-plane"><img src="images/g1444.png" width="100" height="100"></div> -->
+
+</div>
+
+
+<!-- =========================
+     NAVIGATION LINKS     
+============================== -->
+<div class="navbar navbar-fixed-top custom-navbar" role="navigation">
+		<div class="container">
+
+
+		<!-- navbar header -->
+		<h5><img class="wow fadeIn" data-wow-delay="0s" src="images/vg.png" width="30" height="30"><span> </span><span class="wow fadeIn" data-wow-delay="0s" id='status' style="color:white" class="smoothScroll"></h5></span>
+		<!--<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><p id='account' style="color:white" class="smoothScroll"></p></li>
+			</ul>
+		</div> -->
+			</div>
+
+
+</div>
+		
+		
+	
+
+
+
+<!-- =========================
+    INTRO SECTION 
+   
+============================== -->
+<section id="intro" class="parallax-section">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-md-12 col-sm-12">
+				<br><br><br>
+				<div>
+				<h1 class="wow fadeIn" data-wow-delay="0.4s" style="font-size:106px; font-family:Potra"><span class="wow fadeIn" data-wow-delay="0s"><img src="images/vg.png" width="100" height="100"></span><span style="color:white">virtual</span><span style="color:#d4af37">gold</span></h1>
+				<h3 class="wow fadeIn" data-wow-delay="0.8s" style="font-size:60"><span style="color:#4267b2">AN INNOVATIVE NEW KIND OF CRYPTOCURRENCY</span></h3><br><br><br>
+				<h3 class="wow fadeIn" data-wow-delay="1.2s"><span style="color:white font-size:40px;">WORLD'S FIRST <span style="color:#d4af37">TOKENLESS</span> DIGITAL ASSET STORED ON THE BLOCKCHAIN WHOSE <span style="color:#d4af37">VALUE GROWS</span> AFTER<span style="color:#d4af37"> EVERY PURCHASE</span></span></span></h3><br><br><br><br>
+				<a href="https://virtualgold.medium.com/virtual-gold-potentially-the-most-lucrative-project-in-the-cryptocurrency-space-4c8bb6576cd2" class="btn btn-lg btn-default smoothScroll wow fadeIn" style="color:white" data-wow-delay="1.6s" style="height: 42px; width: 200px" >MEDIUM ARTICLE</a>
+				<a href="#overview" class="btn btn-lg btn-danger smoothScroll wow fadeIn" style="color:gold" data-wow-delay="1.6s" style="height: 42px; width: 200px">BUY VIRUAL GOLD</a>
+				<a href="https://t.me/VirtualGoldOfficial" class="btn btn-lg btn-default smoothScroll wow fadeIn" style="color:white" data-wow-delay="1.6s" style="height: 42px; width: 200px">TELEGRAM GROUP</a>
+				</div><div>
+				<!--<button style="background-color:#4267b2;color:white;width:200px; height:25px;" onclick="location.href='http://www.example.com'" type="button">www.example.com</button>-->
+				<a href="https://etherscan.io/address/0x8e112a38817ae44d391e4ad0f568c701e225bf07#code" class="btn btn-lg btn-default smoothScroll wow fadeIn" style="color:white" data-wow-delay="2s" style="height: 42px; width: 200px">SMART CONTRACT</a>
+				<a href="https://virtualgoldbackup.site/" class="btn btn-lg btn-default smoothScroll wow fadeIn" style="color:white" data-wow-delay="2s" style="height: 42px; width: 200px">OUR BACKUP SITE</a><br>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</section>
+
+
+
+<!-- =========================
+    OVERVIEW SECTION   
+============================== -->
+
+<section id="overview" class="parallax-section">
+	<center><h2 class="wow bounceIn"><table><tr><td align="right"><span style="color:#4267b2; font-size:30px">You currently own : </span></td><td> <span style="color:black; font-size:30px" id="price2"></span><span style="color:black; font-size:30px"></span></td></tr><tr><td align="right"><span style="font-size:30px">1 gram of virtualgold : </span></td><td> <span style="color:#4267b2; font-size:30px" id="price"></span><span style="color:#4267b2;font-size:30px"> </span></span></td></tr><tr><td align="right"><span style="color:#4267b2; style="font-size:30px">Value of holdings :</span></td><td> <span font-size:30px" id="price3"></span><span style="font-size:30px"> </span></span></td></tr></table><br></div></center></h3><br><br><br><br><hr style="height:0.5px;border-width:0;color:gray;background-color:black"><br>
+	<div class="container">
+		<div class="row">
+
+			<div class="wow bounceIn col-md-6 col-sm-6">
+				<center><h1>Sell Virtualgold</h1></center>
+				<center><span style="font-size:20.5px">Convert virtualgold back into ETH</span><br><span style="font-size:24px">Amount in grams </span><input style="width: 121px;"type="number" id="sellAmount" /></center><br>
+				<h4><center><a style="background-color:#4267b2; color:white" class="sell-button btn btn-lg btn-default smoothScroll">Sell</a></center></h4><div style="line-height:40%;"><br></div>
+				<p>Please Note - The price of virtualgold does not reduce when others sell. But it increases when others buy</p>
+			</div>
+					
+			<div class="wow bounceIn col-md-6 col-sm-6">
+				<center><h1>Buy Virtualgold</h1></center>
+				<center><span style="font-size:24px">Amount in ETH </span><input type="number" id="amount" /><br><span style="font-size:24px"></span><input type="text" placeholder="Enter referral address for 1% bonus (optional)" id="userText" style="width: 350px;height: 30px" /></center><br>
+				<center><h4><a  style="background-color:#4267b2; color:white" class="pay-button btn btn-lg btn-default smoothScroll">Invest</a></center></h4></center>
+				<p>Please Note - 33% of investment is used as fees. See below to learn more</p>
+			</div>
+
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+
+			<div class="wow bounceIn col-md-6 col-sm-6">
+				<center><h1>Sell Virtualgold</h1></center>
+				<center><span style="font-size:20.5px">Convert virtualgold back into ETH</span><br><span style="font-size:24px">Amount in grams </span><input style="width: 121px;"type="number" id="sellAmount" /></center><br>
+				<h4><center><a style="background-color:#4267b2; color:white" class="sell-button btn btn-lg btn-default smoothScroll">Sell</a></center></h4><div style="line-height:40%;"><br></div>
+				<p>Please Note - The price of virtualgold does not reduce when others sell. But it increases when others buy</p>
+			</div>
+					
+			<div class="wow bounceIn col-md-6 col-sm-6">
+				<center><h1>Buy Virtualgold</h1></center>
+				<center><span style="font-size:24px">Amount in ETH </span><input type="number" id="amount" /><br><span style="font-size:24px"></span><input type="text" placeholder="Enter referral address for 1% bonus (optional)" id="userText" style="width: 350px;height: 30px" /></center><br>
+				<center><h4><a  style="background-color:#4267b2; color:white" class="pay-button btn btn-lg btn-default smoothScroll">Invest</a></center></h4></center>
+				<p>Please Note - 33% of investment is used as fees. See below to learn more</p>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+
+<!-- =========================
+    DETAIL SECTION   
+============================== -->
+
+<div style="background-image: url('../images/img.png');">
+<section id="detail" class="parallax-section">
+	<div class="container">
+		<div class="row">
+				<div class="wow bounceIn"><center><img src="images/vg.png" width="90" height="90"></center><br>
+				<center><h2><span style="color:#d4af37">Introducing Virtualgold</span></h2></center></div>
+				<div class="wow fadeIn" data-wow-delay="0.3s"><span style="color:white"><h3 style="font-family:Yu Gothic Light">Quite potentially one of the most lucrative oppurtunities in the crypto space, virtualgold is the worlds first tokenless digital asset stored on the ethereum blockchain that uses an innovative model to sustainably increase its value. Unlike a standard token, virtualgold has no fixed total supply. The total amount of virtualgold in existance gets automatically updated as people buy and sell so as to prevent the price from falling. It has been created in such a way that its value steadily grows based upon demand, but at the same time even if the demand goes to zero holders get a certain level of protection. This is because, unlike other cryptocurrencies, virtualgold can be refunded to the smart contract intself. It is guarenteed by the smart contract that no investor can lose beyond 29% of their original investment in ETH.</h3></span><br>
+		</div>
+	</div>
+</section>
+</div>
+
+
+
+<!-- =========================
+    FAQ SECTION   
+============================== -->
+<section id="faq" class="parallax-section">
+	<div class="container">
+		<div class="row">
+
+			<!-- Section title
+			================================================== -->
+			<div class="wow bounceIn col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 text-center">
+				<div class="section-title">
+					<h2>Frequently Asked Questions</h2>
+					<p style="font-family:Yu Gothic Light">If you have any further question feel free to ask us on our telegram group</p>
+				</div>
+			</div>
+
+			<div class="wow fadeInUp col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10" data-wow-delay="0.3s">
+  					<div class="panel panel-default">
+   						<div class="panel-heading" role="tab" id="headingOne">
+      						<h4 class="panel-title">
+        						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          							 If others sell their virtualgold does the price drop?
+        						</a>
+      						</h4>
+    					</div>
+   						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      						<div class="panel-body">
+        						<p style="color:black;font-family:Yu Gothic">In short the answer is no. At a very fundamental level virtualgold is different from other blockchain assets. The price is not dictated by supply and demand. Once people buy virtualgold there is a certain amount of ETH backing its value within the smart contract. As new people join, a portion of their investment is distributed to all holders indirectly by increasing the amount of ETH backing the price of virtualgold. This way for the amount of virtualgold you own, it's equivalent value in ETH is always secured in the smart contract. Assume the current price for 1gram of virtual gold is $100 dollars and you own 2grams. Even if everyone sells their holdings $200 will still be left within the contract exclusively for you. This value can never go down as people sell. But it would increase as more and more people buy.</p>
+      						</div>
+   						 </div>
+ 					</div>
+
+    				<div class="panel panel-default">
+   						<div class="panel-heading" role="tab" id="headingTwo">
+      						<h4 class="panel-title">
+        						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          							Can you transfer virtual gold to another address?
+        						</a>
+      						</h4>
+    					</div>
+   						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      						<div class="panel-body">
+                            	<p style="color:black;font-family:Yu Gothic Light">Nope it is not possible. Once you buy virtualgold your holdings are uniquely linked to your wallet, and stored in the virtualgold smart contract on the ethereum blockchain. You wouldn't be receiving any tokens in your wallet. Therefore it cannot be transferred. Virtualgold is not a traditional cryptocurrency used for facilitating transactions. The main motivation behind virtualgold was to create a digital asset solely for investors. Virtualgold is more like the blockchain equivalent of a real world appreciating asset like land or gold where investors buy in order to sell at a higher price later.</p>
+      						</div>
+   						 </div>
+ 					</div>
+
+ 					<div class="panel panel-default">
+   						<div class="panel-heading" role="tab" id="headingThree">
+      						<h4 class="panel-title">
+        						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          							Are early investors rewarded more than newer ones?
+        						</a>
+      						</h4>
+    					</div>
+   						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      						<div class="panel-body">
+                            	<p style="color:black;font-family:Yu Gothic Light">Although everybody's investment grows with time, the rate of growth of of virtualgold is inversely proportionate to the number of virtual gold holders. Therefore those investors who invest when there are fewer holders(when there is lesser money in the smart contact), would observe a quicker growth in investment. Therefore it would be more lucrative to invest early when there are not many holders.</p>
+      						</div>
+   						 </div>
+ 					 </div>
+
+ 				 </div>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+
+
+<!-- =========================
+    SPONSORS SECTION   
+============================== -->
+<section id="sponsors" class="parallax-section">
+	<div class="container">
+		<div class="row">
+
+			<div class="wow bounceIn col-md-12 col-sm-12">
+				<center><div class="section-title">
+					<h2 style="color:#d4af37">Our Referral Program</h2><br><br>
+				</div></center>
+			</div>
+
+			<div class="wow fadeIn" data-wow-delay="0.3s" style="color:white;font-family:Yu Gothic Light">
+				<br><center><h3><span>Your referral link : </span><span style="color:gold;" id="link" onclick="selectText('link')"></span></h3></center><br><br><br><h3 style="color:white">Tell others about virtualgold and ask them to enter your wallet address in the referral code section just above the invest button. This way you would recieve a <span style="color:gold">bonus of 5% of every investment</span> made with your referral code. Additionally the investor who invests using your referral code would recieve a <span style="color:gold">1% bonus.</span> This is done to incentivize investors to use your referral code. All bonuses are paid in virtualgold. Also please note that in order to be eligible for this 5% referral commission, you need to be a virtualgold holder(no minimum required investment). The quantity owned by you should be grater than 0.00 grams</h3>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<!-- =========================
+    CONTACT SECTION   
+============================== -->
+
+<!-- =========================
+    FOOTER SECTION   
+============================== -->
+<footer>
+	<div class="container">
+		<div class="row">
+
+			<div class="col-md-12 col-sm-12">
+				<center><p class="wow fadeIn" data-wow-delay="0.6s">Copyright &copy; 2020 Virtualgold 
+                    
+
+				<cetner><ul class="social-icon">
+					<li><a href="https://t.me/VirtualGoldBackup" class="fa fa-paper-plane wow fadeIn" data-wow-delay="0.3s"></a></li>
+					<li><a href="https://t.me/VirtualGoldOfficial" class="fa fa-paper-plane wow fadeIn" data-wow-delay="0.3s"></a></li>
+					<li><a href="https://virtualgold.medium.com/virtual-gold-potentially-the-most-lucrative-project-in-the-cryptocurrency-space-4c8bb6576cd2" class="fa fa-medium wow fadeIn" data-wow-delay="0.3s"></a></li>
+				</ul></center>
+
+			</div>
+			
+		</div>
+	</div>
+</footer>
+
+
+<!-- Back top -->
+<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+
+
+<!-- =========================
+     SCRIPTS   
+============================== -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.parallax.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/custom.js"></script>
+  <div>	  
+    <div id="status"></div>
+  </div>
+</body>
+</html>
