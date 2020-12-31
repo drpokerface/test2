@@ -23,6 +23,26 @@ http://www.templatemo.com/tm-486-new-event
 
 <!-- Google Font -->
 <link href='https://fonts.googleapis.com/css?family=Poppins:400,500,600' rel='stylesheet' type='text/css'>
+<script>
+function myFunction() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read Goldpaper"; 
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read Less"; 
+    moreText.style.display = "inline";
+  }
+}
+</script>
+<style>
+#more {display: none;}
+</style>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	  <script type="text/javascript">
 		  function selectText(containerid) {
@@ -136,6 +156,37 @@ http://www.templatemo.com/tm-486-new-event
       })
     }
   </script>
+	
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Jan 12, 2021 15:37:25").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
 <link rel="shortcut icon" type="image/png" href="images/v2.png" />	
 </head>
 <body data-spy="scroll" data-offset="50" data-target=".navbar-collapse">
@@ -169,6 +220,7 @@ http://www.templatemo.com/tm-486-new-event
 
 
 </div>
+
 		
 		
 	
@@ -179,6 +231,7 @@ http://www.templatemo.com/tm-486-new-event
     INTRO SECTION 
    
 ============================== -->
+
 <section id="intro" class="parallax-section">
 	<div class="container">
 		<div class="row">
@@ -188,7 +241,7 @@ http://www.templatemo.com/tm-486-new-event
 				<div>
 				<h1 class="wow fadeIn" data-wow-delay="0.4s" style="font-size:106px; font-family:Potra"><span class="wow fadeIn" data-wow-delay="0s"><img src="images/vg.png" width="100" height="100"></span><span style="color:white">virtual</span><span style="color:#d4af37">gold</span></h1>
 				<h3 class="wow fadeIn" data-wow-delay="0.8s" style="font-size:60"><span style="color:#4267b2">AN INNOVATIVE NEW KIND OF CRYPTOCURRENCY</span></h3><br><br><br>
-				<h3 class="wow fadeIn" data-wow-delay="1.2s"><span style="color:white font-size:40px;">WORLD'S FIRST <span style="color:#d4af37">TOKENLESS</span> DIGITAL ASSET STORED ON THE BLOCKCHAIN WHOSE <span style="color:#d4af37">VALUE GROWS</span> AFTER<span style="color:#d4af37"> EVERY PURCHASE</span></span></span></h3><br><br><br><br>
+				<h3 class="wow fadeIn" data-wow-delay="1.2s"><span style="color:white; font-size:30px;"><div id="spaced">WORLD'S FIRST <span style="color:#d4af37">TOKENLESS</span> DIGITAL ASSET STORED ON THE</div>BLOCKCHAIN WHOSE <span style="color:#d4af37">VALUE GROWS</span> UPON<span style="color:#d4af37"> EVERY PURCHASE</span></span></span></h3><br><br><br><br>
 				<a href="https://virtualgold.medium.com/virtual-gold-potentially-the-most-lucrative-project-in-the-cryptocurrency-space-4c8bb6576cd2" class="btn btn-lg btn-default smoothScroll wow fadeIn" style="color:white" data-wow-delay="1.6s" style="height: 42px; width: 200px" >MEDIUM ARTICLE</a>
 				<a href="#overview" class="btn btn-lg btn-danger smoothScroll wow fadeIn" style="color:gold" data-wow-delay="1.6s" style="height: 42px; width: 200px">BUY VIRUAL GOLD</a>
 				<a href="https://t.me/VirtualGoldOfficial" class="btn btn-lg btn-default smoothScroll wow fadeIn" style="color:white" data-wow-delay="1.6s" style="height: 42px; width: 200px">TELEGRAM GROUP</a>
@@ -198,39 +251,35 @@ http://www.templatemo.com/tm-486-new-event
 				<a href="https://virtualgoldbackup.site/" class="btn btn-lg btn-default smoothScroll wow fadeIn" style="color:white" data-wow-delay="2s" style="height: 42px; width: 200px">OUR BACKUP SITE</a><br>
 				</div>
 			</div>
-
-
 		</div>
 	</div>
 </section>
 
 
 
+
+
 <!-- =========================
     OVERVIEW SECTION   
 ============================== -->
-
+<span class="container" id="dark"><center><h3>Trust me, you dont wanna miss this. Virtualgold pre-sale begins on <span style="color:#4267b2">12th Jan 14:00hrs UTC.</span> Official countdown for launch:</h3></center><center><h1 id="demo"></h1></center></span>
 <section id="overview" class="parallax-section">
-	<center><h2 class="wow bounceIn"><table><tr><td align="right"><span style="color:#4267b2; font-size:30px">You currently own : </span></td><td> <span style="color:black; font-size:30px" id="price2"></span><span style="color:black; font-size:30px"></span></td></tr><tr><td align="right"><span style="font-size:30px">1 gram of virtualgold : </span></td><td> <span style="color:#4267b2; font-size:30px" id="price"></span><span style="color:#4267b2;font-size:30px"> </span></span></td></tr><tr><td align="right"><span style="color:#4267b2; style="font-size:30px">Value of holdings :</span></td><td> <span font-size:30px" id="price3"></span><span style="font-size:30px"> </span></span></td></tr></table><br></div></center></h3><br><br><br><br><hr style="height:0.5px;border-width:0;color:gray;background-color:black"><br>
-	<div class="container">
-		<div class="row">
+	<!--<center><h2 class="wow bounceIn"><table><tr><td align="right"><span style="color:#4267b2; font-size:30px">You currently own : </span></td><td> <span style="color:black; font-size:30px" id="price2"></span><span style="color:black; font-size:30px"></span></td></tr><tr><td align="right"><span style="font-size:30px">1 gram of virtualgold : </span></td><td> <span style="color:#4267b2; font-size:30px" id="price"></span><span style="color:#4267b2;font-size:30px"> </span></span></td></tr><tr><td align="right"><span style="color:#4267b2; style="font-size:30px">Value of holdings :</span></td><td><span style="font-size:30px"id="price3"> </span></span></td></tr></table><br></div></center></h3><br><br><br><br><hr style="height:0.5px;border-width:0;color:gray;background-color:black"><br>-->
+	<div id="overlayed"><div class="container">
+		<div class="row" >
 
 			<div class="wow bounceIn col-md-6 col-sm-6">
-				<center><h1>Sell Virtualgold</h1></center>
-				<center><span style="font-size:20.5px">Convert virtualgold back into ETH</span><br><span style="font-size:24px">Amount in grams </span><input style="width: 121px;"type="number" id="sellAmount" /></center><br>
-				<h4><center><a style="background-color:#4267b2; color:white" class="sell-button btn btn-lg btn-default smoothScroll">Sell</a></center></h4><div style="line-height:40%;"><br></div>
-				<p>Please Note - The price of virtualgold does not reduce when others sell. But it increases when others buy</p>
+				<center><h1>Your Holdings</h1><br><table><tr><td align="right"><span style="color:#4267b2; font-size:24px">You currently own : </span></td><td> <span style="color:black; font-size:24px" id="price2"></span><span style="color:black; font-size:24px"></span></td></tr><tr><td align="right"><span style="font-size:24px">1 gram of virtualgold : </span></td><td> <span style="color:#4267b2; font-size:24px" id="price"></span><span style="color:#4267b2;font-size:24px"> </span></td></tr><tr><td align="right"><span style="font-size:24px;color:#4267b2;">Value of holdings :</span></td><td> <span style="font-size:24px" id="price3"></span></td></tr></table></center>
 			</div>
 					
 			<div class="wow bounceIn col-md-6 col-sm-6">
 				<center><h1>Buy Virtualgold</h1></center>
 				<center><span style="font-size:24px">Amount in ETH </span><input type="number" id="amount" /><br><span style="font-size:24px"></span><input type="text" placeholder="Enter referral address for 1% bonus (optional)" id="userText" style="width: 350px;height: 30px" /></center><br>
 				<center><h4><a  style="background-color:#4267b2; color:white" class="pay-button btn btn-lg btn-default smoothScroll">Invest</a></center></h4></center>
-				<p>Please Note - 33% of investment is used as fees. See below to learn more</p>
+				<p>Please Note - 29% of investment is used as fees. See below to learn more</p>
 			</div>
 
 		</div>
-	</div>
 	<div class="container">
 		<div class="row">
 
@@ -242,10 +291,10 @@ http://www.templatemo.com/tm-486-new-event
 			</div>
 					
 			<div class="wow bounceIn col-md-6 col-sm-6">
-				<center><h1>Buy Virtualgold</h1></center>
+				<center><h1>Transfer Virtualgold</h1></center>
 				<center><span style="font-size:24px">Amount in ETH </span><input type="number" id="amount" /><br><span style="font-size:24px"></span><input type="text" placeholder="Enter referral address for 1% bonus (optional)" id="userText" style="width: 350px;height: 30px" /></center><br>
 				<center><h4><a  style="background-color:#4267b2; color:white" class="pay-button btn btn-lg btn-default smoothScroll">Invest</a></center></h4></center>
-				<p>Please Note - 33% of investment is used as fees. See below to learn more</p>
+				<p>Please Note - 29% of investment is used as fees. See below to learn more</p>
 			</div>
 
 		</div>
@@ -264,6 +313,7 @@ http://www.templatemo.com/tm-486-new-event
 				<div class="wow bounceIn"><center><img src="images/vg.png" width="90" height="90"></center><br>
 				<center><h2><span style="color:#d4af37">Introducing Virtualgold</span></h2></center></div>
 				<div class="wow fadeIn" data-wow-delay="0.3s"><span style="color:white"><h3 style="font-family:Yu Gothic Light">Quite potentially one of the most lucrative oppurtunities in the crypto space, virtualgold is the worlds first tokenless digital asset stored on the ethereum blockchain that uses an innovative model to sustainably increase its value. Unlike a standard token, virtualgold has no fixed total supply. The total amount of virtualgold in existance gets automatically updated as people buy and sell so as to prevent the price from falling. It has been created in such a way that its value steadily grows based upon demand, but at the same time even if the demand goes to zero holders get a certain level of protection. This is because, unlike other cryptocurrencies, virtualgold can be refunded to the smart contract intself. It is guarenteed by the smart contract that no investor can lose beyond 29% of their original investment in ETH.</h3></span><br>
+				<span id="dots"></span><span id="more"><br><center><img src="images/bgr-1.png" width="850" height="1100" id="borderd"><br></center><br><center><img src="images/bgr-2.png" width="850" height="1100" id="borderd"><br></center><br><center><img src="images/bgr-3.png" width="850" height="1100" id="borderd"><br></center><br><center><img src="images/bgr-4.png" width="850" height="1100" id="borderd"><br></center><br><center><img src="images/bgr-5.png" width="850" height="1100" id="borderd"><br></center><br><center><img src="images/bgr-6.png" width="850" height="1100" id="borderd"><br></center><br><center><img src="images/bgr-7.png" width="850" height="1100" id="borderd"><br></center><br><center><img src="images/bgr-8.png" width="850" height="1100" id="borderd"><br></center><br></span></p><center><button onclick="myFunction()" id="myBtn" class="btn btn-lg btn-default" style="background-color:#d4af37;">Read Goldpaper</button></center>
 		</div>
 	</div>
 </section>
@@ -275,6 +325,7 @@ http://www.templatemo.com/tm-486-new-event
     FAQ SECTION   
 ============================== -->
 <section id="faq" class="parallax-section">
+	
 	<div class="container">
 		<div class="row">
 
@@ -292,13 +343,13 @@ http://www.templatemo.com/tm-486-new-event
    						<div class="panel-heading" role="tab" id="headingOne">
       						<h4 class="panel-title">
         						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-          							 If others sell their virtualgold does the price drop?
+          							 Can the price of virtualgold ever price drop(even when others sell)?
         						</a>
       						</h4>
     					</div>
    						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       						<div class="panel-body">
-        						<p style="color:black;font-family:Yu Gothic">In short the answer is no. At a very fundamental level virtualgold is different from other blockchain assets. The price is not dictated by supply and demand. Once people buy virtualgold there is a certain amount of ETH backing its value within the smart contract. As new people join, a portion of their investment is distributed to all holders indirectly by increasing the amount of ETH backing the price of virtualgold. This way for the amount of virtualgold you own, it's equivalent value in ETH is always secured in the smart contract. Assume the current price for 1gram of virtual gold is $100 dollars and you own 2grams. Even if everyone sells their holdings $200 will still be left within the contract exclusively for you. This value can never go down as people sell. But it would increase as more and more people buy.</p>
+        						<p style="color:black;font-family:Yu Gothic Light">In short the answer is no. At a very fundamental level virtualgold is different from other blockchain assets. The price does not drop when the demand is low. Once people buy virtualgold there is a certain amount of ETH backing its value within the smart contract. As new people join, a portion of their investment is distributed to all holders indirectly by increasing the amount of ETH backing the price of virtualgold. This way for the amount of virtualgold you own, it's equivalent value in ETH is always secured in the smart contract. Assume the current price for 1gram of virtual gold is $100 dollars and you own 2grams. Even if everyone sells their holdings $200 will still be left within the contract exclusively for you. This value can never go down as people sell. But it would increase as more and more people buy.</p>
       						</div>
    						 </div>
  					</div>
@@ -307,13 +358,13 @@ http://www.templatemo.com/tm-486-new-event
    						<div class="panel-heading" role="tab" id="headingTwo">
       						<h4 class="panel-title">
         						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          							Can you transfer virtual gold to another address?
+          							How to buy virtualgold?
         						</a>
       						</h4>
     					</div>
    						<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       						<div class="panel-body">
-                            	<p style="color:black;font-family:Yu Gothic Light">Nope it is not possible. Once you buy virtualgold your holdings are uniquely linked to your wallet, and stored in the virtualgold smart contract on the ethereum blockchain. You wouldn't be receiving any tokens in your wallet. Therefore it cannot be transferred. Virtualgold is not a traditional cryptocurrency used for facilitating transactions. The main motivation behind virtualgold was to create a digital asset solely for investors. Virtualgold is more like the blockchain equivalent of a real world appreciating asset like land or gold where investors buy in order to sell at a higher price later.</p>
+                            	<p style="color:black;font-family:Yu Gothic Light">After the countdown is over users would be able to buy virtualgold. Users can buy virtualgold through this site or directly via the smart contract. In order to buy, users would need to have a web3 wallet(preferably metamask) setup with some ethereum in it.  Here is a quick guide on how to install and setup a metamask wallet: https://www.youtube.com/watch?v=yWfZnjkhhhg</p>
       						</div>
    						 </div>
  					</div>
@@ -322,11 +373,25 @@ http://www.templatemo.com/tm-486-new-event
    						<div class="panel-heading" role="tab" id="headingThree">
       						<h4 class="panel-title">
         						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          							Are early investors rewarded more than newer ones?
+          							Questions regarding security
         						</a>
       						</h4>
     					</div>
    						<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      						<div class="panel-body">
+                            	<p style="color:black;font-family:Yu Gothic Light">Virtualgold has no owner. Virtualgold uses smart contract technology to ensure maximum security and decentralized ownership. Additionally, our smart contract would be made publicly viewable. This means that anyone/everyone would be free to audit our code whenever they like. Therefore any form of scam or malpractice is impossible.</p>
+      						</div>
+   						 </div>
+ 					 </div>
+				<div class="panel panel-default">
+   						<div class="panel-heading" role="tab" id="headingFour">
+      						<h4 class="panel-title">
+        						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+          							Are early investors rewarded more?
+        						</a>
+      						</h4>
+    					</div>
+   						<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
       						<div class="panel-body">
                             	<p style="color:black;font-family:Yu Gothic Light">Although everybody's investment grows with time, the rate of growth of of virtualgold is inversely proportionate to the number of virtual gold holders. Therefore those investors who invest when there are fewer holders(when there is lesser money in the smart contact), would observe a quicker growth in investment. Therefore it would be more lucrative to invest early when there are not many holders.</p>
       						</div>
@@ -356,7 +421,7 @@ http://www.templatemo.com/tm-486-new-event
 			</div>
 
 			<div class="wow fadeIn" data-wow-delay="0.3s" style="color:white;font-family:Yu Gothic Light">
-				<br><center><h3><span>Your referral link : </span><span style="color:gold;" id="link" onclick="selectText('link')"></span></h3></center><br><br><br><h3 style="color:white">Tell others about virtualgold and ask them to enter your wallet address in the referral code section just above the invest button. This way you would recieve a <span style="color:gold">bonus of 5% of every investment</span> made with your referral code. Additionally the investor who invests using your referral code would recieve a <span style="color:gold">1% bonus.</span> This is done to incentivize investors to use your referral code. All bonuses are paid in virtualgold. Also please note that in order to be eligible for this 5% referral commission, you need to be a virtualgold holder(no minimum required investment). The quantity owned by you should be grater than 0.00 grams</h3>
+				<br><h3 style="color:white">This referral system is valid for as long as virtulgold is in its presale phase(until 3 weeks after the contract balance crosses $1,000,000 USD)</h3><br><center><h3><span>Your referral link : </span><span style="color:gold;" id="link" onclick="selectText('link')"></span></h3></center><br><br><br><h3 style="color:white">Tell others about virtualgold and ask them to invest using your referral link. This way you would receive a bonus of 5% of every investment made using your link. Additionally the investor who invests using your referral code would receive a 1% bonus. This is done to incentivize investors to use your referral link. All bonuses are paid in virtualgold. Also please note that in order to activate your referral link, you need to be a virtualgold holder (no minimum required investment). The quantity owed by you should be greater than 0.00 grams.</h3>
 			</div>
 		</div>
 	</div>
