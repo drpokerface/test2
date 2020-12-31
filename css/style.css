@@ -103,7 +103,7 @@ footer {
     margin-right: 12px;
     -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
-    z-index: 35;
+    z-index: 350;
 
 }
 
@@ -111,7 +111,7 @@ footer {
 #contact .btn-danger {
     background: #4267b2;
     border-color: transparent;
-    z-index: 35;
+    z-index: 350;
 
 }
 
@@ -123,7 +123,7 @@ footer {
   background: #ffffff;
   border-color: #4267b2;
   color: #ffffff;
-  z-index: 35;
+  z-index: 350;
 
 }
 
@@ -135,13 +135,22 @@ footer {
     background: #ffffff;
     color: #333333;
     border-color: #4267b2;
-    z-index: 35;
+    z-index: 350;
 
 }
 
 .parallax-section {
   background-attachment: fixed !important;
   background-size: cover !important;
+}
+
+
+#borderd {
+  border: 5px solid #d7b95a;
+}
+
+#spaced{
+	word-spacing: 5px;
 }
 
 
@@ -200,7 +209,7 @@ footer {
 .custom-navbar {
     /*margin-bottom: 100;*/
     padding: 0px;
-    background-color: #000000;
+    background-color: #101010;
     position: fixed;
     margin:0px;
 
@@ -276,7 +285,7 @@ footer {
     height: 100vh;
     text-align: center;
 	
-color: #eee;
+color: #222;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -302,9 +311,8 @@ color: #eee;
 /*---------------------------------------
    Overview  section              
 -----------------------------------------*/
-#overview img {
+#overview {
   position: relative;
-  padding-bottom: 32px;
 }
 
 
@@ -320,6 +328,36 @@ color: #eee;
 #detail .fa {
   color: #4267b2;
   font-size: 72px;
+}/*-200px */
+#overlayed {
+  position: relative; /* Sit on top of the page content */
+  display: block; /* Hidden by default */
+  /*width: 100%; /* Full width (cover the whole page) */
+  /*height: 100%; /* Full height (cover the whole page) */
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(1,1,1,1,0.8); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+#dark {
+  position: absolute; /* Sit on top of the page content */
+  display: block; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 5%; /* Full height (cover the whole page) */
+  opacity: 1;
+  top: 1400px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(1,1,1,1,1); /* Black background with opacity */
+  z-index: 40; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+
 }
 
 
