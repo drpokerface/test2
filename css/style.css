@@ -293,7 +293,7 @@ color: #222;
   align-items: center;
   perspective: 1000px;
   perspective-origin: 50% 50%;
-  animation: animation 50s linear infinite;	
+  animation: animation 110s linear infinite;	
 }
 
 @keyframes animation {
