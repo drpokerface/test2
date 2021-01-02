@@ -321,8 +321,9 @@ color: #222;
     Detail section              
 -----------------------------------------*/
 #detail {
-    background: #111111;
+    /*background: #111111;*/
     color: #ffffff;
+    background: url('../images/img.png') 50% 0 repeat-y fixed;
 }
 
 #detail .fa {
