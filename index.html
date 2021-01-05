@@ -177,8 +177,8 @@ var x = setInterval(function() {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   // Display the result in the element with id="demo"
-  document.getElementById("demo").innerHTML = days + "<span style='color:#4267b2; font-size:55px'>days</span> " + hours + "hrs "
-  + minutes + "mins " + seconds + "secs ";
+  document.getElementById("demo").innerHTML = days + "<span style='color:#4267b2; font-size:85px'>days</span> " + hours + "<span style='color:#4267b2; font-size:85px'>hrs</span> "
+  + minutes + "<span style='color:#4267b2; font-size:85px'>mins</span> " + seconds + "<span style='color:#4267b2; font-size:85px'>secs</span> ";
 
   // If the count down is finished, write some text
   if (distance < 0) {
