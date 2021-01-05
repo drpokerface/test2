@@ -8,7 +8,6 @@ body {
     font-family: 'Poppins', sans-serif;
     font-style: normal;
 		font-weight: 400;
-	zoom: 85%;
 }
 
 
@@ -286,6 +285,7 @@ footer {
           align-items: center;
     height: 100vh;
     text-align: center;
+    zoom: 85%;
 	
 color: #222;
   width: 100%;
