@@ -110,7 +110,7 @@ footer {
 #intro .btn-danger,
 #contact .btn-danger {
     background: #4267b2;
-    border-color: #4267b2;
+    border: 2px solid #ffffff;
     color: #ffffff;	
     z-index: 350;
 
@@ -122,8 +122,8 @@ footer {
 
 #intro .btn-danger:hover {
   background: #ffffff;
-  border-color: #4267b2;
-  color: #ffffff;
+  border: 2px solid #4267b2;
+  color: #4267b2;
   z-index: 350;
 
 }
