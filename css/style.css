@@ -2,6 +2,11 @@
 New Event
 http://www.templatemo.com/tm-486-new-event
 */
+@media (max-width:629px) {
+  img#optionalstuff {
+    display: none;
+  }
+}
 
 body {
 		background: #ffffff;
