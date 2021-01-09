@@ -18,7 +18,7 @@ http://www.templatemo.com/tm-486-new-event
     width: 40%;
     height: 40%;
     zoom: 50%;
-    object-fit: cover;
+    /*object-fit: cover;*/
   }
 }
 
