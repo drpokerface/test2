@@ -19,6 +19,7 @@ http://www.templatemo.com/tm-486-new-event
     height: 100%;
     zoom: 50%;
     object-fit: cover;
+    overflow:hidden;
   }
 }
 
