@@ -3,27 +3,13 @@ New Event
 http://www.templatemo.com/tm-486-new-event
 */
 @media (min-width:629px) {
-  #hide {
-    display: none;
-  }
-}
-@media (min-width:629px) {
   #optionalstuff {
     display: none;
   }
 }
 @media (max-width:629px) {
   #optionalstuff {
-    opacity:1;
-    background-color:#ccc;
-    position:absolute;
-    top:0px;
-    left:0px;
-    z-index:3000;
-    width: 100%;
-    height: 100%;
     zoom: 50%;
-    object-fit: cover;
   }
 }
 
